@@ -43,27 +43,34 @@ If you notice a conflict with your current setup, you want to make a backup of y
 * `tar xzf /jffs/ntp_stats-arm.tar.gz`
 * `rm /jffs/ntp_stats-arm.tar.gz`
 
-**Step 4:** Create a cron job to collect stats by adding the following line to `/jffs/scripts/services-start`
+**Step 4:** Run the following command to manually start ntpd as litmus test
 
-`cru a NtpdStats "*/5 * * * * /jffs/bin/ntpstats.sh`
+* `/opt/etc/init.d/S77ntpd-custom start`
+* `/jffs/bin/ntpstats.sh`
 
-**Step 5:** Patch files for WebUI
+Stop and check each command if it shows error. Or else proceed to next step.
+
+**Step 5:** Create a cron job to collect stats by adding the following line to `/jffs/scripts/services-start`
+
+`cru a NtpdStats "*/5 * * * * /jffs/bin/ntpstats.sh"`
+
+**Step 6:** Patch files for WebUI and restart httpd
 * `cp /opt/var/spool/ntp/Tools_NtpdStats.asp /opt/var/www`
 * `cp /opt/var/spool/ntp/state.js /opt/var/www`
+* `mount -a`
+* `service restart_httpd`
 
-**Step 6:** Add the following line to your `/jffs/scripts/post-mount`
+Stop and check each command if it shows error. If thing goes well, now you shall be able to see NTP Daemon inside Tools on WebUI.
+
+**Step 7:** Add the following line to `/jffs/scripts/post-mount`
 
 * `mount -a`
 
-This will mount /opt/var/www to /www as specified in `/jffs/configs/fstab`. No worries. It's not a destructive operation. The original content of /www still resides safely in ROM.
-
-**Step 7:** Restart WebGUI
-* `service restart_httpd`
-
-Now you shall be able to see NTP Daemon inside Tools
+This will auto mount /opt/var/www to /www on startup as specified in `/jffs/configs/fstab`. No worries. It's not a destructive operation. The original content of /www still resides safely in ROM.
 
 **Step 8:** Reboot your router and enjoy!
-Once Step 6 confirms working. You may want to reboot to confirm everything stay.
+
+You may want to reboot now to confirm everything stay.
 
 ### Tune your NTP Daemon Config
 
