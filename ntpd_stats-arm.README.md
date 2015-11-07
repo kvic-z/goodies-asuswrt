@@ -23,7 +23,7 @@ We need rrdtool for graphing. wget is for retrieving the tarball (in Step 3) fro
 
 **Step 3:** Retrieve and install ntpd_stats-arm.tar.gz 
 
-**WARNING:** the tarball has the following content:
+**WARNING:** the tarball has the following content. If you notice a conflict with your current setup, you want to make a backup of your existing files first before proceed. 
 ```
 /jffs/bin/ntpd
 /jffs/bin/ntpq
@@ -35,7 +35,7 @@ We need rrdtool for graphing. wget is for retrieving the tarball (in Step 3) fro
 /opt/var/spool/ntp/state.js
 /opt/var/spool/ntp/stats.rrd
 ```
-If you notice a conflict with your current setup, you want to make a backup of your existing files first. Then proceed with
+Once confirm safe to proeed, run the following
 
 * `cd /jffs`
 * `wget --no-check-certificate https://github.com/kvic-z/goodies-asuswrt/blob/master/ntpd_stats-arm.tar.gz`
