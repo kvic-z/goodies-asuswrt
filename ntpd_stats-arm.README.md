@@ -50,6 +50,7 @@ If you notice a conflict with your current setup, you want to make a backup of y
 **Step 5:** Add the following line to your `/jffs/scripts/post-mount`
 
 * `mount -a`
+
 This to mount /opt/var/www to /www as we specify in `/jffs/configs/fstab` so that we can override the content of the original /www. No worries. It's not a destructive operation. The original content is still residing in ROM.
 
 **Step 6:** Restart WebGUI
