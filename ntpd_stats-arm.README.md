@@ -43,22 +43,26 @@ If you notice a conflict with your current setup, you want to make a backup of y
 * `tar xzf /jffs/ntp_stats-arm.tar.gz`
 * `rm /jffs/ntp_stats-arm.tar.gz`
 
-**Step 4:** Patch files for WebUI
+**Step 4:** Create a cron job to collect stats by adding the following line to `/jffs/scripts/services-start`
+
+`cru a NtpdStats "*/5 * * * * /jffs/bin/ntpstats.sh`
+
+**Step 5:** Patch files for WebUI
 * `cp /opt/var/spool/ntp/Tools_NtpdStats.asp /opt/var/www`
 * `cp /opt/var/spool/ntp/state.js /opt/var/www`
 
-**Step 5:** Add the following line to your `/jffs/scripts/post-mount`
+**Step 6:** Add the following line to your `/jffs/scripts/post-mount`
 
 * `mount -a`
 
-This to mount /opt/var/www to /www as we specify in `/jffs/configs/fstab` so that we can override the content of the original /www. No worries. It's not a destructive operation. The original content is still residing in ROM.
+This will mount /opt/var/www to /www as specified in `/jffs/configs/fstab`. No worries. It's not a destructive operation. The original content of /www still resides safely in ROM.
 
-**Step 6:** Restart WebGUI
+**Step 7:** Restart WebGUI
 * `service restart_httpd`
 
 Now you shall be able to see NTP Daemon inside Tools
 
-**Step 7:** Reboot your router and enjoy!
+**Step 8:** Reboot your router and enjoy!
 Once Step 6 confirms working. You may want to reboot to confirm everything stay.
 
 ### Tune your NTP Daemon Config
@@ -66,6 +70,7 @@ Once Step 6 confirms working. You may want to reboot to confirm everything stay.
 Please check the "server" entries in /jffs/etc/ntp.conf. You want to replace those ip address with a time server near you. Preferrably put some stratum 1 servers there.
 
 ### Uninstall
+* remove the lines you added to /jffs/scripts/post-mount and /jffs/scripts/services-start
 * `rm /jffs/bin/ntpd`
 * `rm /jffs/bin/ntpq`
 * `rm /jffs/bin/ntpstats.sh`
