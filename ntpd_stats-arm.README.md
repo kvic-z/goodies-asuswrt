@@ -15,7 +15,7 @@ We need rrdtool for graphing. wget is for retrieving the tarball (in Step 3) fro
 * `opkg install rrdtool`
 * `opkg install wget`
 
-**Step 2:** Copy /www to /opt/var/www and run WebGUI from /opt/var/www
+**Step 2:** Copy /www to /opt/var/www in preparing WebGUI to run from /opt/var/www
 * `tar czf /jffs/www.tar.gz /www`
 * `cd /opt/var`
 * `tar xzf /jffs/www.tar.gz`
