@@ -48,11 +48,11 @@ Once confirm safe to proeed, run the following
 * `/opt/etc/init.d/S77ntpd-custom start`
 * `/jffs/bin/ntpstats.sh`
 
-Stop and check each command if it shows error. Or else proceed to next step.
+Stop and check each command if it has error. Or else proceed to Step 5.
 
 **Step 5:** Create a cron job to collect stats by adding the following line to `/jffs/scripts/services-start`
 
-`cru a NtpdStats "*/5 * * * * /jffs/bin/ntpstats.sh"`
+* `cru a NtpdStats "*/5 * * * * /jffs/bin/ntpstats.sh"`
 
 **Step 6:** Patch files for WebUI and restart httpd
 * `cp /opt/var/spool/ntp/Tools_NtpdStats.asp /opt/var/www`
