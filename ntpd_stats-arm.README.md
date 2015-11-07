@@ -38,19 +38,27 @@ We need rrdtool for graphing. wget is for retrieving the tarball (in Step 3) fro
 If you notice a conflict with your current setup, you want to make a backup of your existing files first. Then proceed with
 
 * `cd /jffs`
-* `wget --no-check-certificate https://github.com/kvic-z/goodies-asuswrt`
+* `wget --no-check-certificate https://github.com/kvic-z/goodies-asuswrt/blob/master/ntpd_stats-arm.tar.gz`
 * `cd /`
 * `tar xzf /jffs/ntp_stats-arm.tar.gz`
 * `rm /jffs/ntp_stats-arm.tar.gz`
 
 **Step 4:** Patch files for WebUI
-* 'cp /opt/var/spool/ntp/Tools_NtpdStats.asp /opt/var/www`
+* `cp /opt/var/spool/ntp/Tools_NtpdStats.asp /opt/var/www`
 * `cp /opt/var/spool/ntp/state.js /opt/var/www`
 
 **Step 5:** Add the following line to your `/jffs/scripts/post-mount`
-* `mount -a`
 
-**Step 6:** Reboot your router and enjoy!
+* `mount -a`
+This to mount /opt/var/www to /www as we specify in `/jffs/configs/fstab` so that we can override the content of the original /www. No worries. It's not a destructive operation. The original content is still residing in ROM.
+
+**Step 6: Restart WebGUI
+* `service restart_httpd`
+
+Now you shall be able to see NTP Daemon inside Tools
+
+**Step 7:** Reboot your router and enjoy!
+Once Step 6 confirms working. You may want to reboot to confirm everything stay.
 
 ### Tune your NTP Daemon Config
 
