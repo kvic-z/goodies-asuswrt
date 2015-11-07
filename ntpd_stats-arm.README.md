@@ -2,11 +2,18 @@
 
 This package (ntp_stats-arm.tar.gz) provides a NTP Daemon (ntp-4.2.8p4) for ASUSWRT/Merlin firmwares. 
 
-Pre-requisites: Entware installed
+### Pre-requisites
+
+Entware installed
 
 ### Installtion
 
-Step 1: Install rrdtool and wget packages from Entware. We need rrdtool for graphing.
+*Step 1:* Install **rrdtool** and **wget** (optional) packages from Entware. 
+
+**We need rrdtool for graphing. wget is for retrieving this package from github.**
+
+**You don't need to install wget if you can manually get the tarball (in Step 3) from github to your router through other mean.**
+
 ```
 opkg install rrdtool
 opkg install wget
