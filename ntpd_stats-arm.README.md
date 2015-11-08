@@ -1,6 +1,6 @@
 ## NTPD and Performance Stats
 
-This package (ntp_stats-arm.tar.gz) provides a NTP Daemon (ntp-4.2.8p4) for ASUSWRT/Merlin firmwares. 
+This package (ntpd_stats-arm.tar.gz) provides a NTP Daemon (ntp-4.2.8p4) for ASUSWRT/Merlin firmwares. At the moment it's only for ARM based routers.
 
 ### Pre-requisite
 
