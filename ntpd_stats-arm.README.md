@@ -57,9 +57,10 @@ Stop and check each command if it has error. If thing goes well, now you shall b
 
 * `cru a NtpdStats "*/5 * * * * /jffs/bin/ntpstats.sh"`
 
-**Step 7:** Add the following line to `/jffs/scripts/post-mount`
+**Step 7:** Append the following two lines to the end of `/jffs/scripts/post-mount`
 
 * `mount -a`
+* `service restart_httpd`
 
 **Step 8:** Reboot your router and enjoy!
 
