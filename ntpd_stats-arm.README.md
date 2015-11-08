@@ -31,7 +31,7 @@ We need rrdtool for graphing. wget is for retrieving the tarball from github.
 /opt/var/spool/ntp/Tools_NtpdStats.asp
 /opt/var/spool/ntp/stats.rrd
 ```
-Once confirm safe to proeed, run the following
+Once confirm safe to proceed, run the following
 
 * `wget --no-check-certificate -O - https://github.com/kvic-z/goodies-asuswrt/blob/master/ntpd_stats-arm.tar.gz?raw=true | tar -C / -xzf -`
 
@@ -48,9 +48,9 @@ Stop and check each command if it has error. Or else proceed to Step 5.
 * `cru a NtpdStats "*/5 * * * * /jffs/bin/ntpstats.sh"`
 
 **Step 6:** Patch files for WebUI and restart httpd
-* `cp /opt/var/spool/ntp/Tools_NtpdStats.asp /opt/var/www`
-* `sed -i 's/Other Settings");/Other Settings", "NTP Daemon");/' state.js`
-* `sed -i 's/Tools_OtherSettings.asp");/Tools_OtherSettings.asp", "Tools_NtpdStats.asp");/' state.js`
+* `cp /opt/var/spool/ntp/Tools_NtpdStats.asp /www`
+* `sed -i 's/Other Settings");/Other Settings", "NTP Daemon");/' /www/state.js`
+* `sed -i 's/therSettings.asp");/therSettings.asp", "Tools_NtpdStats.asp");/' /www/state.js`
 * `service restart_httpd`
 
 Stop and check each command if it has error. If thing goes well, now you shall be able to see NTP Daemon inside Tools on WebUI.
