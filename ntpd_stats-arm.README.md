@@ -37,8 +37,7 @@ We need rrdtool for graphing. wget is for retrieving the tarball (in Step 3) fro
 ```
 Once confirm safe to proeed, run the following
 
-* `cd /jffs`
-* `wget --no-check-certificate https://github.com/kvic-z/goodies-asuswrt/blob/master/ntpd_stats-arm.tar.gz`
+* `wget --no-check-certificate -O /jffs/ntpd_stats-arm.tar.gz https://github.com/kvic-z/goodies-asuswrt/blob/master/ntpd_stats-arm.tar.gz?raw=true`
 * `cd /`
 * `tar xzf /jffs/ntp_stats-arm.tar.gz`
 * `rm /jffs/ntp_stats-arm.tar.gz`
