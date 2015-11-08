@@ -45,6 +45,7 @@ Once confirm safe to proeed, run the following
 **Step 4:** Run the following command to manually start ntpd as litmus test
 
 * `/opt/etc/init.d/S77ntpd-custom start`
+* `mount -a`
 * `/jffs/bin/ntpstats.sh`
 
 Stop and check each command if it has error. Or else proceed to Step 5.
@@ -56,7 +57,6 @@ Stop and check each command if it has error. Or else proceed to Step 5.
 **Step 6:** Patch files for WebUI and restart httpd
 * `cp /opt/var/spool/ntp/Tools_NtpdStats.asp /opt/var/www`
 * `cp /opt/var/spool/ntp/state.js /opt/var/www`
-* `mount -a`
 * `service restart_httpd`
 
 Stop and check each command if it shows error. If thing goes well, now you shall be able to see NTP Daemon inside Tools on WebUI.
