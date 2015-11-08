@@ -39,8 +39,8 @@ Once confirm safe to proeed, run the following
 
 * `wget --no-check-certificate -O /jffs/ntpd_stats-arm.tar.gz https://github.com/kvic-z/goodies-asuswrt/blob/master/ntpd_stats-arm.tar.gz?raw=true`
 * `cd /`
-* `tar xzf /jffs/ntp_stats-arm.tar.gz`
-* `rm /jffs/ntp_stats-arm.tar.gz`
+* `tar xzf /jffs/ntpd_stats-arm.tar.gz`
+* `rm /jffs/ntpd_stats-arm.tar.gz`
 
 **Step 4:** Run the following command to manually start ntpd as litmus test
 
