@@ -20,7 +20,7 @@ We need rrdtool for graphing. wget is for retrieving the tarball from github.
 
 **Step 3:** Retrieve and install ntpd_stats-arm.tar.gz 
 
-**WARNING:** the tarball has the following content. If you notice a conflict with your current setup, you want to make a backup of your existing files first before proceed. 
+**WARNING:** the tarball has the following content. If you notice a conflict with your current setup, you want to make a backup of your existing files first before proceed, and then do a merge before proceed to Step 4.
 ```
 /jffs/bin/ntpd
 /jffs/bin/ntpq
@@ -37,17 +37,15 @@ Once confirm safe to proceed, run the following
 
 **Step 4:** Run the following command to manually start ntpd as litmus test
 
-* `mount -a`
+* `cp /jffs/configs/fstab /etc; mount -a`
 * `/opt/etc/init.d/S77ntpd-custom start`
 * `/jffs/bin/ntpstats.sh`
 
+`mount -a` mounts /opt/var/www to /www. No worries. It's not a destructive operation. The original content of /www still resides safely in ROM.
+
 Stop and check each command if it has error. Or else proceed to Step 5.
 
-**Step 5:** Create a cron job to collect stats by adding the following line to `/jffs/scripts/services-start`
-
-* `cru a NtpdStats "*/5 * * * * /jffs/bin/ntpstats.sh"`
-
-**Step 6:** Patch files for WebUI and restart httpd
+**Step 5:** Patch files for WebUI and restart httpd
 * `cp /opt/var/spool/ntp/Tools_NtpdStats.asp /www`
 * `sed -i 's/Other Settings");/Other Settings", "NTP Daemon");/' /www/state.js`
 * `sed -i 's/therSettings.asp");/therSettings.asp", "Tools_NtpdStats.asp");/' /www/state.js`
@@ -55,11 +53,13 @@ Stop and check each command if it has error. Or else proceed to Step 5.
 
 Stop and check each command if it has error. If thing goes well, now you shall be able to see NTP Daemon inside Tools on WebUI.
 
+**Step 6:** Create a cron job to collect stats by adding the following line to `/jffs/scripts/services-start`
+
+* `cru a NtpdStats "*/5 * * * * /jffs/bin/ntpstats.sh"`
+
 **Step 7:** Add the following line to `/jffs/scripts/post-mount`
 
 * `mount -a`
-
-This will auto mount /opt/var/www to /www on startup as specified in `/jffs/configs/fstab`. No worries. It's not a destructive operation. The original content of /www still resides safely in ROM.
 
 **Step 8:** Reboot your router and enjoy!
 
