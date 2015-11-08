@@ -41,7 +41,7 @@ Once confirm safe to proceed, run the following
 * `/opt/etc/init.d/S77ntpd-custom start`
 * `/jffs/bin/ntpstats.sh`
 
-`mount -a` mounts /opt/var/www to /www. No worries. It's not a destructive operation. The original content of /www still resides safely in ROM.
+`mount -a` mounts `/opt/var/www` to `/www`. No worries. It's not a destructive operation. The original content of `/www` still resides safely in ROM.
 
 Stop and check each command if it has error. Or else proceed to Step 5.
 
@@ -70,6 +70,7 @@ You may want to reboot now to confirm everything stay.
 Please check the "server" entries in /jffs/etc/ntp.conf. You want to replace those ip address with a time server near you. Preferrably put some stratum 1 servers there.
 
 ### Uninstall
+* unstall rddtool and wget through Entware
 * remove the lines you added to /jffs/scripts/post-mount and /jffs/scripts/services-start
 * `rm /jffs/bin/ntpd`
 * `rm /jffs/bin/ntpq`
@@ -78,7 +79,6 @@ Please check the "server" entries in /jffs/etc/ntp.conf. You want to replace tho
 * `rm /jffs/configs/fstab`
 * `rm /opt/etc/init.d/S77ntpd-custom`
 * `rm /opt/var/spool/ntp/Tools_NtpdStats.asp`
-* `rm /opt/var/spool/ntp/state.js`
 * `rm /opt/var/spool/ntp/stats.rrd`
 * `rm -rf /opt/var/www`
 * `reboot`
