@@ -8,18 +8,15 @@ Entware installed
 
 ### Installation
 
-**Step 1:** Install **rrdtool** and **wget** (optional) packages from Entware. 
+**Step 1:** Install **rrdtool** and **wget** packages from Entware. 
 
-We need rrdtool for graphing. wget is for retrieving the tarball (in Step 3) from github. You don't need to install wget if you can manually get the tarball to your router through other mean.
+We need rrdtool for graphing. wget is for retrieving the tarball from github.
 
 * `opkg install rrdtool`
 * `opkg install wget`
 
 **Step 2:** Copy /www to /opt/var/www in preparing WebGUI to run from /opt/var/www
-* `tar czf /jffs/www.tar.gz /www`
-* `cd /opt/var`
-* `tar xzf /jffs/www.tar.gz`
-* `rm /jffs/www.tar.gz`
+* `tar cf - /www | tar -C /opt/var -xvf -`
 
 **Step 3:** Retrieve and install ntpd_stats-arm.tar.gz 
 
@@ -32,20 +29,16 @@ We need rrdtool for graphing. wget is for retrieving the tarball (in Step 3) fro
 /jffs/configs/fstab
 /opt/etc/init.d/S77ntpd-custom
 /opt/var/spool/ntp/Tools_NtpdStats.asp
-/opt/var/spool/ntp/state.js
 /opt/var/spool/ntp/stats.rrd
 ```
 Once confirm safe to proeed, run the following
 
-* `wget --no-check-certificate -O /jffs/ntpd_stats-arm.tar.gz https://github.com/kvic-z/goodies-asuswrt/blob/master/ntpd_stats-arm.tar.gz?raw=true`
-* `cd /`
-* `tar xzf /jffs/ntpd_stats-arm.tar.gz`
-* `rm /jffs/ntpd_stats-arm.tar.gz`
+* `wget --no-check-certificate -O - https://github.com/kvic-z/goodies-asuswrt/blob/master/ntpd_stats-arm.tar.gz?raw=true | tar -C / -xzf -`
 
 **Step 4:** Run the following command to manually start ntpd as litmus test
 
-* `/opt/etc/init.d/S77ntpd-custom start`
 * `mount -a`
+* `/opt/etc/init.d/S77ntpd-custom start`
 * `/jffs/bin/ntpstats.sh`
 
 Stop and check each command if it has error. Or else proceed to Step 5.
@@ -56,10 +49,11 @@ Stop and check each command if it has error. Or else proceed to Step 5.
 
 **Step 6:** Patch files for WebUI and restart httpd
 * `cp /opt/var/spool/ntp/Tools_NtpdStats.asp /opt/var/www`
-* `cp /opt/var/spool/ntp/state.js /opt/var/www`
+* `sed -i 's/Other Settings");/Other Settings", "NTP Daemon");/' state.js`
+* `sed -i 's/Tools_OtherSettings.asp");/Tools_OtherSettings.asp", "Tools_NtpdStats.asp");/' state.js`
 * `service restart_httpd`
 
-Stop and check each command if it shows error. If thing goes well, now you shall be able to see NTP Daemon inside Tools on WebUI.
+Stop and check each command if it has error. If thing goes well, now you shall be able to see NTP Daemon inside Tools on WebUI.
 
 **Step 7:** Add the following line to `/jffs/scripts/post-mount`
 
