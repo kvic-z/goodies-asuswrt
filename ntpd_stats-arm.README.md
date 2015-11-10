@@ -70,6 +70,8 @@ You may want to reboot now to confirm everything stay.
 
 Please check the "server" entries in /jffs/etc/ntp.conf. You want to replace those ip address with a time server near you. Preferrably put some stratum 1 servers there.
 
+Also change "interface listen" to your router's ip address. So that NTPD can serve requests from clients on your LAN.
+
 ### Uninstall
 * unstall rddtool and wget through Entware
 * remove the lines you added to /jffs/scripts/post-mount and /jffs/scripts/services-start
