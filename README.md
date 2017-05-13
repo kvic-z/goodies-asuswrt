@@ -10,7 +10,7 @@ R3 is the latest full package release and only available for ARM routers. It inc
 ### File Descriptions
 
 * README.md - this file.
-* ntpd_stats-arm-R3.tar.gz - full package of R3 release for ARM. ntp-4.2.8p9-win. new color scheme.
+* ntpd_stats-arm-R3-1.tar.gz - full package of R3 release for ARM. ntp-4.2.8p9-win. new color scheme.
 * ntpd_stats-arm-R2.tar.gz - full package of R2 release for ARM. ntp-4.2.8p7.
 * ntpd_stats-mips-R2.tar.gz - full package of R2 release for MIPS. ntp-4.2.8p7.
 * ntpd_stats-BIN.zip - ntp-4.2.8p8 binaries compiled for ARM.
